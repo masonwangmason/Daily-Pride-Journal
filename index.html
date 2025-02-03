@@ -5,13 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Pride Journal</title>
 
-    <style href="index.css"></style>
+    <link rel="stylesheet" href="index.css">
 </head>
 
-<body style="background-color: antiquewhite;">
+<body>
     <h1 class="title">Daily Pride Journal</h1>
 
+    <section class="navBar">
+        <a href="index.html" class="navLink">Home</a>
+        <a href="" class="navLink">Journal</a>
+        <a href="" class="navLink">History</a>
+        <a href="" class="navLink">Logout</a>
+    </section>
 
+    <section class="welcomeMessage">
+        <h2>Hi Mason,</h2>
+        <p>How are you feeling today?
+        <br>What are you proud of today?
+        <br>Write it down below.
+        </p>
+    </section>
+    
+    <section>
+        <form class="panel" action="">
+            <textarea class="journalEntry" name="journal" id="journalEntry1"></textarea>
+            <textarea class="journalEntry" name="journal" id="journalEntry2"></textarea>
+            <textarea class="journalEntry" name="journal" id="journalEntry3"></textarea>
+            <textarea class="journalEntry" name="journal" id="journalEntry4"></textarea>
+            <textarea class="journalEntry" name="journal" id="journalEntry5"></textarea>
+            <button type="submit" class="submit">Submit</button>
+        </form>
+    </section>
+
+    <section class="flowerCredit">
+        <img class="flower" src="images/flower.jpg" alt="flower.jpg">
+        <p class="credit">Image by mariadetarosarinda on Freepik</p>
+
+        <div class="dailyQuote">
+            <p class="quote">Gestures, in love, are incomparably more attractive, effective and valuable than words.</p>
+            <p class="quoteSource">--Francois Rabelais</p>
+        </div>
+    </section>
+
+    <footer style="text-align: center;">Designed by Mason Wang 2025</footer>
 </body>
 
 </html>

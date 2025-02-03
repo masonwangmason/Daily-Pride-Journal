@@ -1,3 +1,95 @@
-.title{
+.title {
+    text-align: center;
+    size: 50px;
+}
+
+body {
+    background-color: #f0f0f0;
+}
+
+.navBar {
+    width: 30%;
+    min-width: 400px; 
+    background-color: rgb(248, 205, 244);
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    text-align: center;
+    border-radius: 50px;
+    margin: 0 auto; /* Center horizontally */
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center items horizontally */
+    gap: 45px; /* Add gap between buttons */
     
+}
+
+.navLink{
+    color: #fff;
+    text-decoration: none;
+}
+
+.navLink:hover {
+    color: #ff69b4; /* Change color on hover */
+}
+
+.welcomeMessage {
+    text-align: center;
+    font-size: 20px;
+}
+
+.panel{
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 60px 40px 40px 40px;
+    width: 100%;
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+    gap: 20px; /* Add space between children */
+}
+
+.journalEntry{
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 80%;
+    height: 50px;
+}
+
+.submit {
+    background-color: #007bff;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+    width: 40%;
+}
+
+.flowerCredit{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.flower{
+    width: 350px;
+    height: 350px;
+    border-radius: 50%; /* Make the element a circle */
+    overflow: hidden; /* Ensure the content fits within the circle */
+    margin-bottom: 10px;
+}
+
+.dailyQuote{
+    text-align: left;
+    font-size: 20px;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
 }
