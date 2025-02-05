@@ -8,8 +8,8 @@ body {
 }
 
 .navBar {
-    width: 30%;
-    min-width: 400px; 
+    width: 50%;
+    min-width: 500px; 
     background-color: rgb(248, 205, 244);
     color: rgb(255, 255, 255);
     padding: 10px;
