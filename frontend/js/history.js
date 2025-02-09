@@ -24,10 +24,15 @@ function renderEntries() {
             ${entry.content.map(item => `<p>${item}</p>`).join("")}
             <div class="btnContainer">
                 <button class="edit-btn">Edit</button>
-                <button class="delete-btn">Delete</button>
+                <button class="delete-btn" data-id="${entry.id}">Delete</button>
             </div>
         </div>`
   ).join("");
+
+  // Attach event listeners to edit delete buttons
+  document.querySelectorAll(".delete-btn").forEach(button => {
+    button.addEventListener("click", handleDelete);
+  });
 }
 
 // Function to render history welcome message
@@ -38,6 +43,28 @@ function renderWelcome() {
     historyWelcome.innerHTML = `
         <h2>Congratulations!</h2>
         <p>You've recorded ${entries.length} entries so far. Keep up the good work!</p>`;
+  }
+}
+
+// Function to handle entry deletion
+async function handleDelete(event) {
+  const id = event.target.getAttribute("data-id");
+
+  try{
+    const res = await fetch(`api/entries/${id}`, {
+      method: "DELETE"
+    });
+
+    console.log("Delete response:", res);
+
+    const data = await res.json();
+    console.log("Entry to be deleted:", data);
+
+    entries = entries.filter(entry => entry.id !== parseInt(id));
+    console.log("Entry Deleted");
+    renderEntries();
+  } catch (error) {
+    console.error("Error deleting entry:", error);
   }
 }
 
