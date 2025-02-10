@@ -39,8 +39,12 @@ function renderEntries() {
                     <button class="delete-btn" data-id="${entry.id}">Delete</button>
                 </div>
             </div>
-            <div class="edit-mode" style="display: none;">
-                <textarea class="edit-content">${entry.content.join("\n")}</textarea>
+            <div class="edit-mode">
+                <textarea class="edit-content">${entry.content[0] ? entry.content[0] : ""}</textarea>
+                <textarea class="edit-content">${entry.content[1] ? entry.content[1] : ""}</textarea>
+                <textarea class="edit-content">${entry.content[2] ? entry.content[2] : ""}</textarea>
+                <textarea class="edit-content">${entry.content[3] ? entry.content[3] : ""}</textarea>
+                <textarea class="edit-content">${entry.content[4] ? entry.content[4] : ""}</textarea>
                 <div class="btnContainer">
                     <button class="save-btn" data-id="${entry.id}">Save</button>
                     <button class="cancel-btn" data-id="${entry.id}">Cancel</button>
@@ -78,7 +82,7 @@ function toggleEditMode(event) {
     editMode.style.display = "none";
   } else {
     viewMode.style.display = "none";
-    editMode.style.display = "block";
+    editMode.style.display = "flex";
   }
 }
 
@@ -86,7 +90,8 @@ function toggleEditMode(event) {
 async function handleSave(event) {
   const entryId = event.target.getAttribute("data-id");
   const card = document.querySelector(`.historyCard[data-id="${entryId}"]`);
-  const newContent = card.querySelector(".edit-content").value.split("\n").map(item => item.trim());
+  const textareas = card.querySelectorAll(".edit-content");
+  const newContent = Array.from(textareas).map(textarea => textarea.value.trim());
 
   try {
     const res = await fetch(`/api/entries/${entryId}`, {
