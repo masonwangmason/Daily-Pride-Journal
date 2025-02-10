@@ -104,6 +104,7 @@ async function handleSave(event) {
     const index = entries.findIndex(entry => entry.id === parseInt(entryId));
     entries[index] = data.entry;
     renderEntries();
+    renderWelcome();
   } catch (error) {
     console.error("Failed to update entry:", error);
   }
@@ -126,6 +127,7 @@ async function handleDelete(event) {
     entries = entries.filter(entry => entry.id !== parseInt(id));
     console.log("Entry Deleted");
     renderEntries();
+    renderWelcome();
   } catch (error) {
     console.error("Error deleting entry:", error);
   }
