@@ -72,6 +72,24 @@ router.post("/", (req, res) => {
   res.status(201).json({ entry: newEntry });
 });
 
+// Update an entry (PUT /api/entries/:id)
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const { content } = req.body;
+  const entryIndex = entries.findIndex(entry => entry.id === parseInt(id));
+
+  if (entryIndex === -1) {
+    return res.status(404).json({ error: "Entry not found" });
+  }
+
+  if (!content) {
+    return res.status(400).json({ error: "Content is required" });
+  }
+
+  entries[entryIndex].content = content;
+  res.status(200).json({ entry: entries[entryIndex] });
+});
+
 // Delete an entry (DELETE /api/entries/:id)
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
