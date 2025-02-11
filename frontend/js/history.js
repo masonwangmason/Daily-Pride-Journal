@@ -18,10 +18,10 @@ async function getEntries() {
 // Function to render history welcome message
 function renderWelcome() {
   if (entries.length === 0) {
-    historyWelcome.innerHTML = "<h2>No entries found. Start by adding one!</h2>";
+    historyWelcome.innerHTML = "<h2>Oops...No entries found. Start by adding one!</h2>";
   } else {
     historyWelcome.innerHTML = `
-        <h2>Congratulations!</h2>
+        <h2 class="welcome-title">Congratulations!</h2>
         <p>You've recorded ${entries.length} entries so far. Keep up the good work!</p>`;
   }
 }
