@@ -27,7 +27,7 @@ async function generateEntries() {
 async function seedDatabase() {
   try {
     await client.connect();
-    const db = client.db("prideJournal"); // Replace with your database name
+    const db = client.db("prideJournal");
     const entries = await generateEntries();
     const result = await db.collection("entries").insertMany(entries);
     console.log(`Inserted ${result.insertedCount} entries`);
