@@ -39,8 +39,27 @@ async function handleNewEntry(event) {
   }
 };
 
+// Function to render a random quote
+async function renderRandomQuote() {
+  try {
+    const res = await fetch("/api/quotes/random");
+    const data = await res.json();
+    console.log(data);
+    const quote = data.quote;
+    console.log("Random quote:", quote);
+
+    const quoteContainer = document.getElementById("quoteContainer");
+    quoteContainer.innerHTML = `<p class="quoteText">"${quote.content}"</p><p class="quoteAuthor">- ${quote.author}</p>`;
+  } catch (error) {
+    console.error("Failed to fetch random quote:", error);
+  }
+}
+
 // Attach the form submission handler
 document.getElementById("newEntryForm").addEventListener("submit", handleNewEntry);
 
 // Set the current date
 setCurrentDate();
+
+// render a random quote
+renderRandomQuote();

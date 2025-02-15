@@ -108,11 +108,29 @@ footer {
   margin-bottom: 10px;
 }
 
-.dailyQuote {
+.quoteContainer {
+  font-family: Allura, cursive;
   text-align: left;
   font-size: 20px;
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  justify-content: center; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the start (left) */
+  justify-content: center;
+  padding: 20px; /* Add some padding for better spacing */
+  max-width: 600px; /* Limit the maximum width */
+  margin: 20px auto; /* Center the container horizontally */
+}
+
+.quoteContainer p {
+  margin: 0; /* Remove default margin */
+}
+
+.quoteContainer .quoteText {
+  align-self: flex-start; /* Align quote text to the start (left) */
+  font-weight: bold; /* Make the author name bold */
+}
+
+.quoteContainer .quoteAuthor {
+  align-self: flex-end; /* Align author name to the end (right) */
+  margin-top: 10px; /* Add some space above the author name */
 }

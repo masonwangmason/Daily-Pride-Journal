@@ -71,4 +71,15 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.get("/random", async (req, res) => {
+  try {
+    const db = await connectToDatabase();
+    const quotes = await db.collection("quotes").aggregate([{ $sample: { size: 1 } }]).toArray();
+    res.status(200).json({ quote: quotes[0] });
+  } catch (error) {
+    console.error("Failed to fetch random quote:", error);
+    res.status(500).json({ message: "Failed to fetch random quote" });
+  }
+});
+
 export default router;
