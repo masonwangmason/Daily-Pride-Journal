@@ -30,6 +30,8 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 "How can I change the layout of history cards so when an user clicks edit, it will enable them to edit the entries?" 
 
+"is there a way you can help me write 1000+ entries for my database and put them on mongo?"  
+
 ### Credits
 Image by mariadetarosarinda on Freepik 
 
