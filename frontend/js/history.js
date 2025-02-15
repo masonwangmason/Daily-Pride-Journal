@@ -138,7 +138,7 @@ async function handleDelete(event) {
     console.log("Delete response:", res);
 
     const data = await res.json();
-    console.log("Entry to be deleted:", data);
+    console.log("Entry deleted:", data);
 
     entries = entries.filter(entry => entry._id !== id);
     console.log("Entry Deleted");

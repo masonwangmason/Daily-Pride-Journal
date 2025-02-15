@@ -35,10 +35,11 @@ async function renderQuotes() {
         </div>`
   ).join("");
 
-  /*
+  
   document.querySelectorAll(".delete-btn").forEach(button => {
     button.addEventListener("click", handleDelete);
   });
+  /*
   document.querySelectorAll(".edit-btn").forEach(button => {
     button.addEventListener("click", handleEdit);
   });
@@ -50,5 +51,26 @@ async function renderQuotes() {
   });
   */
 }
+
+async function handleDelete(event) {
+  const quoteId = event.target.getAttribute("data-id");
+  console.log("Deleting quote with id", quoteId);
+
+  try {
+    const res = await fetch(`/api/quotes/${quoteId}`, {
+      method: "DELETE"
+    });
+
+    const data = await res.json();
+    console.log("Quote deleted:", data);
+
+    quotes = quotes.filter(quote => quote._id !== quoteId);
+    console.log("Quote deleted");
+    renderQuotes();
+  } catch (error) {
+    console.error("Failed to delete quote:", error);
+  }
+}
+
 
 getQuotes();
