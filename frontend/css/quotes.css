@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Allura&display=swap");
+
+.title {
+  font-family: "Allura", cursive;
+  text-align: center;
+  font-size: 50px;
+  padding-top: 20px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+body {
+  background-color: #f0f0f0;
+}
+
+.navBar {
+  font-family: "Allura", cursive;
+  font-size: 20px;
+  width: 50%;
+  min-width: 500px;
+  background-color: rgb(248, 205, 244);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  text-align: center;
+  border-radius: 50px;
+  margin: 0 auto; 
+  display: flex; 
+  justify-content: center; 
+  gap: 80px; 
+}
+
+.navLink {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: #ff69b4; 
+}
+
+/* New quote form styles */
+#newQuoteForm {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 600px;
+}
+
+#newQuoteForm form {
+  display: flex;
+  flex-direction: column;
+}
+
+#newQuoteForm textarea,
+#newQuoteForm input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+#newQuoteForm button.submit {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#newQuoteForm button.submit:hover {
+  background-color: #0056b3;
+}
+
+/* Quote card styles */
+.quoteCard {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 600px;
+}
+
+.quoteCard h2 {
+  margin: 0 0 10px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.quoteCard p {
+  font-size: 1.2em;
+  color: #666;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.btnContainer button {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  padding: 10px 15px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btnContainer button:hover {
+  background-color: #0056b3;
+}
+
+/* Edit mode styles */
+.edit-mode {
+  display: none;
+}
+
+.edit-author,
+.edit-quote {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.edit-author {
+  margin-bottom: 20px;
+}
