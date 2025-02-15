@@ -32,6 +32,26 @@ router.post("/", async (req, res) => {
   }
 }); 
 
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const { author, content } = req.body;
+
+  try {
+    const db = await connectToDatabase();
+    const objectId = new ObjectId(id);
+    const result = await db.collection("quotes").findOneAndUpdate(
+      { _id: objectId },
+      { $set: { author, content } },
+      { returnDocument: "after" }
+    );
+
+    res.status(200).json({ quote: result.value });
+  } catch (error) {
+    console.error("Failed to update quote:", error);
+    res.status(500).json({ message: "Failed to update quote" });
+  }
+});
+
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
