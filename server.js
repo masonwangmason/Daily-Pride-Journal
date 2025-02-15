@@ -1,6 +1,9 @@
 import express from "express";
 import entriesRouter from "./routes/entries.js";
 import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 

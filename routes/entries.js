@@ -1,7 +1,10 @@
 import express from "express";
+import { connectToDatabase } from "../config/db.js";
+import { ObjectId } from "mongodb";
 
 const router = express.Router();
 
+/*
 const entries = [
   {
     id: 1,
@@ -48,58 +51,78 @@ const entries = [
     ],
   },
 ];
+*/
 
-router.get("/", (req, res) => {
-  console.log("GET /entries📓");
-  res.status(200).json({ entries: entries });
+router.get("/", async (req, res) => {
+  try {
+    const db = await connectToDatabase();
+    const entries = await db.collection("entries").find().toArray();
+    res.status(200).json({ entries });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch entries" });
+  }
 });
 
 // Create a new entry (POST /api/entries)
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const { date, content } = req.body;
 
-  if (!date || !content) {
-    return res.status(400).json({ error: "Date and content are required" });
+  const newEntry = { date, content };
+
+  try {
+    const db = await connectToDatabase();
+    const result = await db.collection("entries").insertOne(newEntry);
+    const createdEntry = await db.collection("entries").findOne({ _id: result.insertedId });
+    console.log("New entry created:", createdEntry);
+    res.status(201).json({ entry: createdEntry });
+  } catch (error) {
+    console.error("Failed to create entry:", error);
+    res.status(500).json({ error: "Failed to create entry" });
   }
-
-  const newEntry = {
-    id: entries.length + 1,
-    date,
-    content,
-  };
-
-  entries.push(newEntry);
-  res.status(201).json({ entry: newEntry });
 });
 
 // Update an entry (PUT /api/entries/:id)
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const { content } = req.body;
-  const entryIndex = entries.findIndex(entry => entry.id === parseInt(id));
-
-  if (entryIndex === -1) {
-    return res.status(404).json({ error: "Entry not found" });
-  }
 
   if (!content) {
     return res.status(400).json({ error: "Content is required" });
   }
 
-  entries[entryIndex].content = content;
-  res.status(200).json({ entry: entries[entryIndex] });
+  try {
+    const db = await connectToDatabase();
+    const result = await db.collection("entries").findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { $set: { content } },
+      { returnOriginal: false }
+    );
+
+    if (!result.value) {
+      return res.status(404).json({ error: "Entry not found" });
+    }
+
+    res.status(200).json({ entry: result.value });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update entry" });
+  }
 });
 
 // Delete an entry (DELETE /api/entries/:id)
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   const { id } = req.params;
-  const entryIndex = entries.findIndex((entry) => entry.id === parseInt(id));
 
-  if (entryIndex !== -1) {
-    const deletedEntry = entries.splice(entryIndex, 1);
-    res.status(200).json({ entry: deletedEntry[0] });
-  } else {
-    res.status(404).json({ error: "Entry not found" });
+  try {
+    const db = await connectToDatabase();
+    const result = await db.collection("entries").deleteOne({ _id: new ObjectId(id) });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ error: "Entry not found" });
+    }
+
+    res.status(200).json({ message: "Entry deleted" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete entry" });
   }
 });
 

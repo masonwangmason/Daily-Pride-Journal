@@ -24,15 +24,20 @@ async function handleNewEntry(event) {
 
   const newEntry = { date: newDateInput, content: newContent };
 
-  const res = await fetch("/api/entries", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newEntry)
-  });
+  try {
+    const res = await fetch("/api/entries", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newEntry)
+    });
 
-  const data = await res.json();
-  console.log("New entry created:", data.entry);
-}
+    const data = await res.json();
+    console.log(data);
+    console.log("New entry created:", data.entry);
+  } catch (error) {
+    console.error("Failed to create entry:", error);
+  }
+};
 
 // Attach the form submission handler
 document.getElementById("newEntryForm").addEventListener("submit", handleNewEntry);
