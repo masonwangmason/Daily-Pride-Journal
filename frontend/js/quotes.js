@@ -13,7 +13,7 @@ async function getQuotes() {
 }
 
 async function renderQuotes() {
-  quotesSection.innerHTML = quotes.map(
+  quotesSection.innerHTML = quotes.slice().reverse().map(
     (quote) => `
         <div class="quoteCard" data-id="${quote._id}">
             <div class="view-mode">
@@ -52,6 +52,28 @@ async function renderQuotes() {
   */
 }
 
+async function handleNewQuote(event) {
+  event.preventDefault();
+
+  const author = document.getElementById("authorEntry").value;
+  const content = document.getElementById("quoteEntry").value;
+
+  try {
+    const res = await fetch ("/api/quotes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ author, content })
+    });
+
+    const data = await res.json();
+    console.log("New quote created:", data.quote);
+    quotes.push(data.quote); // Add the new quote to the quotes array
+    renderQuotes(); // Re-render the quotes
+  } catch (error) {
+    console.error("Failed to create quote:", error);
+  } 
+}
+
 async function handleDelete(event) {
   const quoteId = event.target.getAttribute("data-id");
   console.log("Deleting quote with id", quoteId);
@@ -72,5 +94,7 @@ async function handleDelete(event) {
   }
 }
 
+// Attach the form submission handler
+document.getElementById("newQuoteForm").addEventListener("submit", handleNewQuote);
 
 getQuotes();

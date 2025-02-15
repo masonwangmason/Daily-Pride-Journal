@@ -15,6 +15,23 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  const { author, content } = req.body;
+
+  const newQuote = { author, content };
+
+  try {
+    const db = await connectToDatabase();
+    const result = await db.collection("quotes").insertOne(newQuote);
+    const createdQuote = await db.collection("quotes").findOne({ _id: result.insertedId });
+    console.log("New entry created:", createdQuote);
+    res.status(201).json({ quote: createdQuote });
+  } catch (error) {
+    console.error("Failed to create entry:", error);
+    console.log("Failed to create entry");
+  }
+}); 
+
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -33,6 +50,5 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ message: "Failed to delete entry" });
   }
 });
-
 
 export default router;
