@@ -30,13 +30,13 @@ function renderWelcome() {
 function renderEntries() {
   historySection.innerHTML = entries.slice().reverse().map(
     (entry) => `
-        <div class="historyCard" data-id="${entry.id}">
+        <div class="historyCard" data-id="${entry._id}">
             <div class="view-mode">
                 <h2>${entry.date}</h2>
                 ${entry.content.map(item => `<p>${item}</p>`).join("")}
                 <div class="btnContainer">
-                    <button class="edit-btn" data-id="${entry.id}">Edit</button>
-                    <button class="delete-btn" data-id="${entry.id}">Delete</button>
+                    <button class="edit-btn" data-id="${entry._id}">Edit</button>
+                    <button class="delete-btn" data-id="${entry._id}">Delete</button>
                 </div>
             </div>
             <div class="edit-mode">
@@ -46,8 +46,8 @@ function renderEntries() {
                 <textarea class="edit-content">${entry.content[3] ? entry.content[3] : ""}</textarea>
                 <textarea class="edit-content">${entry.content[4] ? entry.content[4] : ""}</textarea>
                 <div class="btnContainer">
-                    <button class="save-btn" data-id="${entry.id}">Save</button>
-                    <button class="cancel-btn" data-id="${entry.id}">Cancel</button>
+                    <button class="save-btn" data-id="${entry._id}">Save</button>
+                    <button class="cancel-btn" data-id="${entry._id}">Cancel</button>
                 </div>
             </div>
         </div>`
@@ -102,14 +102,24 @@ async function handleSave(event) {
       body: JSON.stringify({ content: newContent })
     });
 
+    // Add response status check
+    if (!res.ok) {
+      console.log("Response status:", res.status); // Add debug log
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
     const data = await res.json();
     console.log("Updated entry", data);
 
-    // Update the entry in the entries array
-    const index = entries.findIndex(entry => entry.id === parseInt(entryId));
-    entries[index] = data.entry;
-    renderEntries();
-    renderWelcome();
+    // After successful update, fetch the latest entries
+    await getEntries(); // This will update the entries array and re-render the UI
+
+    // Toggle back to view mode
+    const viewMode = card.querySelector(".view-mode");
+    const editMode = card.querySelector(".edit-mode");
+    viewMode.style.display = "block";
+    editMode.style.display = "none";
+
   } catch (error) {
     console.error("Failed to update entry:", error);
   }
@@ -118,6 +128,7 @@ async function handleSave(event) {
 // Function to handle entry deletion
 async function handleDelete(event) {
   const id = event.target.getAttribute("data-id");
+  console.log("Delete button clicked for entry:", id);
 
   try{
     const res = await fetch(`api/entries/${id}`, {
@@ -129,7 +140,7 @@ async function handleDelete(event) {
     const data = await res.json();
     console.log("Entry to be deleted:", data);
 
-    entries = entries.filter(entry => entry.id !== parseInt(id));
+    entries = entries.filter(entry => entry._id !== id);
     console.log("Entry Deleted");
     renderEntries();
     renderWelcome();

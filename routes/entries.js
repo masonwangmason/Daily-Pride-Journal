@@ -59,6 +59,7 @@ router.get("/", async (req, res) => {
     const entries = await db.collection("entries").find().toArray();
     res.status(200).json({ entries });
   } catch (error) {
+    console.error("Failed to read entry:", error);
     res.status(500).json({ error: "Failed to fetch entries" });
   }
 });
@@ -86,24 +87,24 @@ router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const { content } = req.body;
 
-  if (!content) {
-    return res.status(400).json({ error: "Content is required" });
-  }
+  console.log("Received update request for ID:", id); // Add debug log
+  console.log("New content:", content); // Add debug log
 
   try {
     const db = await connectToDatabase();
+    const objectId = new ObjectId(id);
+    console.log("Converted ObjectId:", objectId); // Add debug log
+
     const result = await db.collection("entries").findOneAndUpdate(
-      { _id: new ObjectId(id) },
+      { _id: objectId },
       { $set: { content } },
-      { returnOriginal: false }
+      { returnDocument: "after" }
     );
 
-    if (!result.value) {
-      return res.status(404).json({ error: "Entry not found" });
-    }
-
+    console.log("Successfully updated entry:", result.value); // Add debug log
     res.status(200).json({ entry: result.value });
   } catch (error) {
+    console.error("Failed to update entry:", error);
     res.status(500).json({ error: "Failed to update entry" });
   }
 });
@@ -120,8 +121,10 @@ router.delete("/:id", async (req, res) => {
       return res.status(404).json({ error: "Entry not found" });
     }
 
+    console.log("Entry deleted successfully");
     res.status(200).json({ message: "Entry deleted" });
   } catch (error) {
+    console.error("Failed to create entry:", error);
     res.status(500).json({ error: "Failed to delete entry" });
   }
 });
