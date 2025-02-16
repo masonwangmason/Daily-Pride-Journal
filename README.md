@@ -8,7 +8,7 @@
 **Design Doc**: https://docs.google.com/document/d/1EO92k3asR6pwD6PMdJCZ0HBWyti_d1t3dFtmEtAAr80/edit?usp=sharing   
 **Slides**: https://docs.google.com/presentation/d/1hQVvfzQ_0DJ0mP3lJyMOtLlPOERtxukz_8_sRUmA1Ps/edit?usp=sharing  
 **Demo**: https://daily-pride-journal.vercel.app/  
-**Video**:    
+**Video**: https://youtu.be/EA-7ZLA1LIM    
 **Wireframe**: https://www.figma.com/design/jOlurv2gUqCZRYERU6Orv0/WebDev-Project-2-Mockup?t=LougloaexkRifHL9-1  
 
 ## Project Overview
