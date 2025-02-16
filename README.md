@@ -30,6 +30,39 @@
 ### Quotes Page  
 ![Quotes Page Screenshot](./screen-shots/screen-shot-3.png)  
 
+## Instructions to Build
+
+***Option 1: Live Demo***  
+
+https://daily-pride-journal.vercel.app/  
+Backend deployed with Vercel. Database deployed with MongoDB Atlas.
+
+***Option 2: Run Locally***  
+
+**Step 1: Git clone this repository**  
+git clone https://github.com/masonwangmason/Daily-Pride-Journal.git
+
+**Step 2: Navigate to the project directory**  
+cd Daily-Pride-Journal
+
+**Step 3: Install dependencies**  
+npm install
+
+**Step 4: Create your .env file**  
+Create a **.env** file in the root directory and add the following content:  
+
+**PORT=3000**  
+**MONGODB_URI=your_mongodb_connection_string**  
+
+Replace **your_mongodb_connection_string** with your actual MongoDB connection string.
+
+**Step 5: Run the server**  
+npm start
+
+**Step 6: Visit the following URL in your desired browser**  
+http://localhost:3000
+
+
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details. 
 
