@@ -11,7 +11,13 @@ const client = new MongoClient(uri);
 async function generateEntries() {
   const entries = [];
   for (let i = 0; i < 1000; i++) {
-    const date = faker.date.past().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    const date = faker.date
+      .past()
+      .toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
     const content = [
       faker.lorem.sentence(),
       faker.lorem.sentence(),

@@ -8,13 +8,16 @@ async function getQuotes() {
   const data = await res.json();
   console.log("Got quotes", data);
   quotes = data.quotes;
-    
+
   renderQuotes();
 }
 
 async function renderQuotes() {
-  quotesSection.innerHTML = quotes.slice().reverse().map(
-    (quote) => `
+  quotesSection.innerHTML = quotes
+    .slice()
+    .reverse()
+    .map(
+      (quote) => `
         <div class="quoteCard" data-id="${quote._id}">
             <div class="view-mode">
                 <h2>${quote.author}</h2>
@@ -33,22 +36,21 @@ async function renderQuotes() {
                 </div>
             </div>
         </div>`
-  ).join("");
+    )
+    .join("");
 
-  
-  document.querySelectorAll(".delete-btn").forEach(button => {
+  document.querySelectorAll(".delete-btn").forEach((button) => {
     button.addEventListener("click", handleDelete);
   });
-  document.querySelectorAll(".edit-btn").forEach(button => {
+  document.querySelectorAll(".edit-btn").forEach((button) => {
     button.addEventListener("click", toggleEditMode);
   });
-  document.querySelectorAll(".save-btn").forEach(button => {
+  document.querySelectorAll(".save-btn").forEach((button) => {
     button.addEventListener("click", handleSave);
   });
-  document.querySelectorAll(".cancel-btn").forEach(button => {
+  document.querySelectorAll(".cancel-btn").forEach((button) => {
     button.addEventListener("click", toggleEditMode);
   });
-  
 }
 
 // Function to toggle edit mode
@@ -84,9 +86,9 @@ async function handleSave(event) {
     const res = await fetch(`/api/quotes/${quoteId}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(newContent)
+      body: JSON.stringify(newContent),
     });
 
     if (!res.ok) {
@@ -98,19 +100,17 @@ async function handleSave(event) {
     console.log("Updated quote", data);
 
     // After successful update, fetch the latest quotes
-    await getQuotes(); // This will update the quotes array and re-render the UI
+    await getQuotes(); // Update the quotes array and re-render the UI
 
     // Toggle back to view mode
     const viewMode = card.querySelector(".view-mode");
     const editMode = card.querySelector(".edit-mode");
     viewMode.style.display = "block";
     editMode.style.display = "none";
-
   } catch (error) {
     console.error("Failed to update quote:", error);
   }
 }
-
 
 async function handleNewQuote(event) {
   event.preventDefault();
@@ -119,10 +119,10 @@ async function handleNewQuote(event) {
   const content = document.getElementById("quoteEntry").value;
 
   try {
-    const res = await fetch ("/api/quotes", {
+    const res = await fetch("/api/quotes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ author, content })
+      body: JSON.stringify({ author, content }),
     });
 
     const data = await res.json();
@@ -131,7 +131,7 @@ async function handleNewQuote(event) {
     renderQuotes(); // Re-render the quotes
   } catch (error) {
     console.error("Failed to create quote:", error);
-  } 
+  }
 }
 
 async function handleDelete(event) {
@@ -140,13 +140,13 @@ async function handleDelete(event) {
 
   try {
     const res = await fetch(`/api/quotes/${quoteId}`, {
-      method: "DELETE"
+      method: "DELETE",
     });
 
     const data = await res.json();
     console.log("Quote deleted:", data);
 
-    quotes = quotes.filter(quote => quote._id !== quoteId);
+    quotes = quotes.filter((quote) => quote._id !== quoteId);
     console.log("Quote deleted");
     renderQuotes();
   } catch (error) {
@@ -155,6 +155,8 @@ async function handleDelete(event) {
 }
 
 // Attach the form submission handler
-document.getElementById("newQuoteForm").addEventListener("submit", handleNewQuote);
+document
+  .getElementById("newQuoteForm")
+  .addEventListener("submit", handleNewQuote);
 
 getQuotes();

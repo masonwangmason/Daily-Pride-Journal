@@ -23,14 +23,16 @@ router.post("/", async (req, res) => {
   try {
     const db = await connectToDatabase();
     const result = await db.collection("quotes").insertOne(newQuote);
-    const createdQuote = await db.collection("quotes").findOne({ _id: result.insertedId });
+    const createdQuote = await db
+      .collection("quotes")
+      .findOne({ _id: result.insertedId });
     console.log("New entry created:", createdQuote);
     res.status(201).json({ quote: createdQuote });
   } catch (error) {
     console.error("Failed to create entry:", error);
     console.log("Failed to create entry");
   }
-}); 
+});
 
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
@@ -39,11 +41,13 @@ router.put("/:id", async (req, res) => {
   try {
     const db = await connectToDatabase();
     const objectId = new ObjectId(id);
-    const result = await db.collection("quotes").findOneAndUpdate(
-      { _id: objectId },
-      { $set: { author, content } },
-      { returnDocument: "after" }
-    );
+    const result = await db
+      .collection("quotes")
+      .findOneAndUpdate(
+        { _id: objectId },
+        { $set: { author, content } },
+        { returnDocument: "after" }
+      );
 
     res.status(200).json({ quote: result.value });
   } catch (error) {
@@ -57,14 +61,15 @@ router.delete("/:id", async (req, res) => {
 
   try {
     const db = await connectToDatabase();
-    const result = await db.collection("quotes").deleteOne({ _id: new ObjectId(id) });
+    const result = await db
+      .collection("quotes")
+      .deleteOne({ _id: new ObjectId(id) });
 
     if (result.deletedCount === 0) {
       return res.status(404).json({ message: "Quote not found" });
     }
 
     res.status(200).json({ message: "Quote deleted" });
-
   } catch (error) {
     console.error("Failed to delete entry:", error);
     res.status(500).json({ message: "Failed to delete entry" });
@@ -74,7 +79,10 @@ router.delete("/:id", async (req, res) => {
 router.get("/random", async (req, res) => {
   try {
     const db = await connectToDatabase();
-    const quotes = await db.collection("quotes").aggregate([{ $sample: { size: 1 } }]).toArray();
+    const quotes = await db
+      .collection("quotes")
+      .aggregate([{ $sample: { size: 1 } }])
+      .toArray();
     res.status(200).json({ quote: quotes[0] });
   } catch (error) {
     console.error("Failed to fetch random quote:", error);

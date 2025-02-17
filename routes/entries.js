@@ -73,7 +73,9 @@ router.post("/", async (req, res) => {
   try {
     const db = await connectToDatabase();
     const result = await db.collection("entries").insertOne(newEntry);
-    const createdEntry = await db.collection("entries").findOne({ _id: result.insertedId });
+    const createdEntry = await db
+      .collection("entries")
+      .findOne({ _id: result.insertedId });
     console.log("New entry created:", createdEntry);
     res.status(201).json({ entry: createdEntry });
   } catch (error) {
@@ -95,11 +97,13 @@ router.put("/:id", async (req, res) => {
     const objectId = new ObjectId(id);
     console.log("Converted ObjectId:", objectId); // Add debug log
 
-    const result = await db.collection("entries").findOneAndUpdate(
-      { _id: objectId },
-      { $set: { content } },
-      { returnDocument: "after" }
-    );
+    const result = await db
+      .collection("entries")
+      .findOneAndUpdate(
+        { _id: objectId },
+        { $set: { content } },
+        { returnDocument: "after" }
+      );
 
     console.log("Successfully updated entry:", result.value); // Add debug log
     res.status(200).json({ entry: result.value });
@@ -115,7 +119,9 @@ router.delete("/:id", async (req, res) => {
 
   try {
     const db = await connectToDatabase();
-    const result = await db.collection("entries").deleteOne({ _id: new ObjectId(id) });
+    const result = await db
+      .collection("entries")
+      .deleteOne({ _id: new ObjectId(id) });
 
     if (result.deletedCount === 0) {
       return res.status(404).json({ error: "Entry not found" });

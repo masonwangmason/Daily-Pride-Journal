@@ -27,9 +27,9 @@ footer {
   text-align: center;
   border-radius: 50px;
   margin: 0 auto; /* Center horizontally */
-  display: flex; 
+  display: flex;
   justify-content: center; /* Center items horizontally */
-  gap: 80px; 
+  gap: 80px;
 }
 
 .navLink {
@@ -38,7 +38,7 @@ footer {
 }
 
 .navLink:hover {
-  color: #ff69b4; 
+  color: #ff69b4;
 }
 
 .historyWelcome {
@@ -55,9 +55,9 @@ footer {
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 20px auto; /* Center horizontally */
-  max-width: 600px; 
+  max-width: 600px;
   padding: 20px;
-  width: 90%; 
+  width: 90%;
 }
 
 .edit-mode {
@@ -86,7 +86,7 @@ footer {
 }
 
 .edit-btn {
-  background-color: rgb(248, 205, 244); 
+  background-color: rgb(248, 205, 244);
   color: white;
   border: none;
   padding: 10px 20px;
@@ -100,7 +100,7 @@ footer {
 }
 
 .delete-btn {
-  background-color: #f44336; 
+  background-color: #f44336;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -114,7 +114,7 @@ footer {
 }
 
 .save-btn {
-  background-color: rgb(248, 205, 244); 
+  background-color: rgb(248, 205, 244);
   color: white;
   border: none;
   padding: 10px 20px;
@@ -128,7 +128,7 @@ footer {
 }
 
 .cancel-btn {
-  background-color: #f44336; 
+  background-color: #f44336;
   color: white;
   border: none;
   padding: 10px 20px;

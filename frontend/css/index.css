@@ -26,10 +26,10 @@ footer {
   padding: 10px;
   text-align: center;
   border-radius: 50px;
-  margin: 0 auto; 
-  display: flex; 
-  justify-content: center; 
-  gap: 80px; 
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
 }
 
 .navLink {
@@ -38,7 +38,7 @@ footer {
 }
 
 .navLink:hover {
-  color: #ff69b4; 
+  color: #ff69b4;
 }
 
 .welcomeMessage {
@@ -58,15 +58,15 @@ footer {
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
-  max-width: 500px; 
+  max-width: 500px;
   padding: 60px 40px 40px 40px;
   width: 100%;
   border-radius: 10px;
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  justify-content: center; 
-  gap: 20px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 
 .journalEntry {
@@ -103,8 +103,8 @@ footer {
 .flower {
   width: 350px;
   height: 350px;
-  border-radius: 50%; 
-  overflow: hidden; 
+  border-radius: 50%;
+  overflow: hidden;
   margin-bottom: 10px;
 }
 
@@ -114,23 +114,23 @@ footer {
   font-size: 20px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align items to the start (left) */
+  align-items: flex-start;
   justify-content: center;
-  padding: 20px; /* Add some padding for better spacing */
-  max-width: 600px; /* Limit the maximum width */
-  margin: 20px auto; /* Center the container horizontally */
+  padding: 20px;
+  max-width: 600px;
+  margin: 20px auto;
 }
 
 .quoteContainer p {
-  margin: 0; /* Remove default margin */
+  margin: 0;
 }
 
 .quoteContainer .quoteText {
-  align-self: flex-start; /* Align quote text to the start (left) */
-  font-weight: bold; /* Make the author name bold */
+  align-self: flex-start;
+  font-weight: bold;
 }
 
 .quoteContainer .quoteAuthor {
-  align-self: flex-end; /* Align author name to the end (right) */
-  margin-top: 10px; /* Add some space above the author name */
+  align-self: flex-end;
+  margin-top: 10px;
 }

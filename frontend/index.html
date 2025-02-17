@@ -1,55 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daily Pride Journal</title>
 
-    <link rel="stylesheet" href="css/index.css">
-</head>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
 
-<body>
+  <body>
     <h1 class="title">Daily Pride Journal</h1>
 
     <section class="navBar">
-        <a href="index.html" class="navLink">Journal</a>
-        <a href="history.html" class="navLink">History</a>
-        <a href="quotes.html" class="navLink">Quotes</a>
+      <a href="index.html" class="navLink">Journal</a>
+      <a href="history.html" class="navLink">History</a>
+      <a href="quotes.html" class="navLink">Quotes</a>
     </section>
 
     <section class="quoteContainer" id="quoteContainer"></section>
 
     <section class="welcomeMessage">
-        <h2>Welcome to Your Daily Pride Journal! 🌈✨</h2>
-        <p>This is your space to celebrate yourself, one day at a time.
-        <br>Every day, take a moment to reflect and record up to five things you're most proud of—big or small. 
-        <br>Your entries will be saved in your History Page, so you can look back anytime and see how far you've come.
-        <br>Start your entry now and let your pride shine! 💜
-        </p>
+      <h2>Welcome to Your Daily Pride Journal! 🌈✨</h2>
+      <p>
+        This is your space to celebrate yourself, one day at a time. <br />Every
+        day, take a moment to reflect and record up to five things you're most
+        proud of—big or small. <br />Your entries will be saved in your History
+        Page, so you can look back anytime and see how far you've come.
+        <br />Start your entry now and let your pride shine! 💜
+      </p>
     </section>
-    
+
     <section>
-        <form id="newEntryForm" class="panel" action="">
-            <textarea class="journalEntry" name="journal" id="journalEntry1" placeholder="Enter your first proudest thing for the day."></textarea>
-            <textarea class="journalEntry" name="journal" id="journalEntry2" placeholder="Enter your second proudest thing for the day."></textarea>
-            <textarea class="journalEntry" name="journal" id="journalEntry3" placeholder="Enter your third proudest thing for the day."></textarea>
-            <textarea class="journalEntry" name="journal" id="journalEntry4" placeholder="Enter your fourth proudest thing for the day."></textarea>
-            <textarea class="journalEntry" name="journal" id="journalEntry5" placeholder="Enter your fifth proudest thing for the day."></textarea>
-            <button type="submit" class="submit">Submit</button>
-        </form>
+      <form id="newEntryForm" class="panel" action="">
+        <textarea
+          class="journalEntry"
+          name="journal"
+          id="journalEntry1"
+          placeholder="Enter your first proudest thing for the day."
+        ></textarea>
+        <textarea
+          class="journalEntry"
+          name="journal"
+          id="journalEntry2"
+          placeholder="Enter your second proudest thing for the day."
+        ></textarea>
+        <textarea
+          class="journalEntry"
+          name="journal"
+          id="journalEntry3"
+          placeholder="Enter your third proudest thing for the day."
+        ></textarea>
+        <textarea
+          class="journalEntry"
+          name="journal"
+          id="journalEntry4"
+          placeholder="Enter your fourth proudest thing for the day."
+        ></textarea>
+        <textarea
+          class="journalEntry"
+          name="journal"
+          id="journalEntry5"
+          placeholder="Enter your fifth proudest thing for the day."
+        ></textarea>
+        <button type="submit" class="submit">Submit</button>
+      </form>
     </section>
 
     <section class="flowerCredit">
-        <img class="flower" src="images/flower.jpg" alt="flower.jpg">
-        <p class="credit">Image by mariadetarosarinda on Freepik</p>
+      <img class="flower" src="images/flower.jpg" alt="flower.jpg" />
+      <p class="credit">Image by mariadetarosarinda on Freepik</p>
 
-        <div class="dailyQuote">
-        </div>
+      <div class="dailyQuote"></div>
     </section>
 
     <footer>Designed by Mason Wang 2025</footer>
 
     <script type="module" src="js/index.js"></script>
-</body>
-
+  </body>
 </html>

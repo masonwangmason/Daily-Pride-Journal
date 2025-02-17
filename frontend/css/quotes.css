@@ -26,10 +26,10 @@ body {
   padding: 10px;
   text-align: center;
   border-radius: 50px;
-  margin: 0 auto; 
-  display: flex; 
-  justify-content: center; 
-  gap: 80px; 
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
 }
 
 .navLink {
@@ -38,7 +38,7 @@ body {
 }
 
 .navLink:hover {
-  color: #ff69b4; 
+  color: #ff69b4;
 }
 
 /* New quote form styles */
@@ -108,7 +108,8 @@ body {
   margin-top: 20px;
 }
 
-.btnContainer .edit-btn, .save-btn {
+.btnContainer .edit-btn,
+.save-btn {
   background-color: rgb(248, 205, 244);
   border: none;
   color: #fff;
@@ -118,8 +119,9 @@ body {
   cursor: pointer;
 }
 
-.btnContainer .delete-btn, .cancel-btn {
-  background-color:rgb(255, 2, 2);
+.btnContainer .delete-btn,
+.cancel-btn {
+  background-color: rgb(255, 2, 2);
   border: none;
   color: #fff;
   padding: 10px 15px;

@@ -1,6 +1,5 @@
 console.log("Index page script loaded!");
 
-
 let newDateInput = "";
 
 // Helper function to get the current date in desired format
@@ -19,7 +18,7 @@ async function handleNewEntry(event) {
     document.getElementById("journalEntry2").value,
     document.getElementById("journalEntry3").value,
     document.getElementById("journalEntry4").value,
-    document.getElementById("journalEntry5").value
+    document.getElementById("journalEntry5").value,
   ];
 
   const newEntry = { date: newDateInput, content: newContent };
@@ -28,7 +27,7 @@ async function handleNewEntry(event) {
     const res = await fetch("/api/entries", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newEntry)
+      body: JSON.stringify(newEntry),
     });
 
     const data = await res.json();
@@ -37,7 +36,7 @@ async function handleNewEntry(event) {
   } catch (error) {
     console.error("Failed to create entry:", error);
   }
-};
+}
 
 // Function to render a random quote
 async function renderRandomQuote() {
@@ -56,7 +55,9 @@ async function renderRandomQuote() {
 }
 
 // Attach the form submission handler
-document.getElementById("newEntryForm").addEventListener("submit", handleNewEntry);
+document
+  .getElementById("newEntryForm")
+  .addEventListener("submit", handleNewEntry);
 
 // Set the current date
 setCurrentDate();
